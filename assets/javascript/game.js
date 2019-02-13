@@ -118,13 +118,13 @@ function updatePC(ImgPath){
 }
 
 function updateNPC(ImgPath){
-  $("#NPC").attr("src", NPC);
+  $("#NPC").attr("src", NPC).addClass('Img-Mirror');
   $(ChseBtn).html('<p><input type="button" value="Click Me" onclick="NPC_Choice()" />');
 }
 
 function PC_Choice(){
   PC_Chosen = true;
-  console.log(PC_Chosen);
+  alert('PC Chosen');
 }
 
 function NPC_Choice(){
