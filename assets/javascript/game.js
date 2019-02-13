@@ -104,31 +104,87 @@ var Megaman = {
 };
 
 //Global Variable Definitions
+var PC = "assets/images/blank.jpg";
+var NPC = "assets/images/blank.jpg";
+
+var PC_Chosen = false;
+
+var ChseBtn = "";
 
 //Functions
+function updatePC(ImgPath){
+  $("#PC").attr("src", PC);
+  $(ChseBtn).html('<p><input type="button" value="Click Me" onclick="PC_Choice()" />');
+}
+
+function updateNPC(ImgPath){
+  $("#NPC").attr("src", NPC);
+  $(ChseBtn).html('<p><input type="button" value="Click Me" onclick="NPC_Choice()" />');
+}
+
+function PC_Choice(){
+  PC_Chosen = true;
+  console.log(PC_Chosen);
+}
+
+function NPC_Choice(){
+  alert('NPC Chosen');
+}
 
 // Start Code Execution
 $(document).ready(function() {
 
-$( "#Shovel_Knight" ).click(function() {
-    $("#PC_Img")
-    .attr("src",ShovelKnight.SRC);
+  $( "#Shovel_Knight" ).click(function() {
+    $(ChseBtn).html("");
+    ChseBtn = "#Char1";
+      if(!PC_Chosen){
+        PC = ShovelKnight.SRC;
+        updatePC(PC);
+      }
+      else{
+        NPC = ShovelKnight.SRC;
+        updateNPC(NPC); 
+      }
+    });
+
+  $( "#Black_Mage" ).click(function() {
+    $(ChseBtn).html("");
+    ChseBtn = "#Char2";
+      if(!PC_Chosen){
+        PC = BlackMage.SRC;
+        updatePC(PC);
+      }
+      else{
+        NPC = BlackMage.SRC;
+        updateNPC(NPC); 
+      }
   });
 
-$( "#Black_Mage" ).click(function() {
-    $("#PC_Img")
-    .attr("src",BlackMage.SRC);
-});
+  $( "#Hollow_Knight" ).click(function() {
+    $(ChseBtn).html("");
+    ChseBtn = "#Char3";
+      if(!PC_Chosen){
+        PC = HollowKnight.SRC;
+        updatePC(PC);
+      }
+      else{
+        NPC = HollowKnight.SRC;
+        updateNPC(NPC); 
+      }
+  });
 
-$( "#Hollow_Knight" ).click(function() {
-    $("#PC_Img")
-    .attr("src",HollowKnight.SRC);
-});
-
-$( "#Megaman" ).click(function() {
-    $("#PC_Img")
-    .attr("src",Megaman.SRC);
-});
+  $( "#Megaman" ).click(function() {
+    $(ChseBtn).html("");
+    ChseBtn = "#Char4";
+      if(!PC_Chosen){
+        PC = Megaman.SRC;
+        updatePC(PC);
+      }
+      else{
+        NPC = Megaman.SRC;
+        updateNPC(NPC); 
+      }
+  });
 
 });
 

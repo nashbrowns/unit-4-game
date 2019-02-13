@@ -33,4 +33,9 @@ body{
   background-size: 100% 500px;
 }
 
+#Img-Shift{
+  position: relative;
 
+  top: 200px;
+
+}
