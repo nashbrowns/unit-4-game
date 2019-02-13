@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
 
-    <!-- Links to CSS -->
+    <!-- Links to reset CSS -->
     <link rel = "stylesheet" type = "text/css" href = "assets/css/reset.css">
-    <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
 
     <!-- Link to Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
@@ -16,18 +15,100 @@
     <!-- Link to Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <!-- Link to Google Font "Nova Flat" -->
+    <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
+
+    <!-- Links to style CSS -->
+    <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+
     <!-- Links to Javascript/jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </head>
 
 <body>
-    
-    <div class = container>
-        <div class = row>
-            <div class = col>
-                
+
+    <div class="jumbotron jumbotron-fluid" id = "head">
+        <div class="container">
+          <h1 class="display-4">Sprite Fight</h1>
+          <p class="lead">Choose a sprite and battle for supremacy!</p>
+          <p class="lead">(Click a sprites image to choose fighter)</p>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class = "row">
+
+            <div class = "col">
+                    <div class="card" style="width: 15rem;">
+                        <img src="assets/images/Shovel_Knight.png" class="card-img-top fighterImg" id = "Shovel_Knight" alt="Shovel Knight">
+                        <div class="card-body">
+                            <h5 class="card-title">Shovel Knight</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
             </div>
+
+            <div class = "col">
+                <div class="card" style="width: 15rem;">
+                    <img src="assets/images/Black_Mage.png" class="card-img-top fighterImg" id = "Black_Mage" alt="Black Mage">
+                    <div class="card-body">
+                        <h5 class="card-title">Black Mage</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col">
+                <div class="card" style="width: 15rem;">
+                    <img src="assets/images/Hollow_Knight.png" class="card-img-top fighterImg" id = "Hollow_Knight" alt="Hollow Knight">
+                    <div class="card-body">
+                        <h5 class="card-title">Hollow Knight</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col">
+                <div class="card" style="width: 15rem;">
+                    <img src="assets/images/Megaman.png" class="card-img-top fighterImg" id = "Megaman" alt="Megaman">
+                    <div class="card-body">
+                        <h5 class="card-title">Megaman</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+        
+        <div class = "row" id = "BattleGround">
+
+                <div class = "col"><!-- Filler --></div>
+
+                <div class = "col">
+                    <div class="card" style="width: 15rem;" id = "PC_Img">
+                        <img src="assets/images/blank.jpg" class="card-img-top fighterImg" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col">
+                    <div class="card" style="width: 15rem;">
+                        <img src="assets/images/blank.jpg" class="card-img-top fighterImg" id = "NPC_Img" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "col"><!-- Filler --></div>
+
         </div>
     </div>
 

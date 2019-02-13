@@ -1,0 +1,36 @@
+body{
+    font-family: 'Nova Flat', cursive;
+    animation: 3000ms ease-in-out infinite color-change;
+}
+
+
+#head{
+    text-align:center;
+    animation: 3000ms ease-in-out infinite color-change;
+}
+  
+@keyframes color-change {
+  0% {
+    background-color: teal;
+  }
+  50% {
+    background-color: lightseagreen;
+  }
+  100% {
+    background-color: teal;
+  }
+}
+
+.fighterImg{
+    height: 190px;
+    object-fit: fill;
+}
+
+#BattleGround{
+  background-image: url('../images/Ring.png');
+  height:500px;
+
+  background-size: 100% 500px;
+}
+
+
