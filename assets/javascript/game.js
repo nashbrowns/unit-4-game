@@ -114,12 +114,12 @@ var ChseBtn = "";
 //Functions
 function updatePC(ImgPath){
   $("#PC").attr("src", PC);
-  $(ChseBtn).html('<p><input type="button" value="Click Me" onclick="PC_Choice()" />');
+  $(ChseBtn).html('<p><input type="button" value="Choose Character" onclick="PC_Choice()" />');
 }
 
 function updateNPC(ImgPath){
   $("#NPC").attr("src", NPC).addClass('Img-Mirror');
-  $(ChseBtn).html('<p><input type="button" value="Click Me" onclick="NPC_Choice()" />');
+  $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
 }
 
 function PC_Choice(){
