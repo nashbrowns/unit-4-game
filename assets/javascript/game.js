@@ -29,7 +29,7 @@ var BlackMage = {
     
         SRC: "assets/images/Black_Mage.png",
     
-        HP: 200,  // Stores Hit Points or “health”
+        HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -55,7 +55,7 @@ var HollowKnight = {
     
        SRC: "assets/images/Hollow_Knight.png",
     
-        HP: 300,  // Stores Hit Points or “health”
+        HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -81,7 +81,7 @@ var Megaman = {
     
        SRC: "assets/images/Megaman.png",
 		
-        HP: 400,  // Stores Hit Points or “health”
+        HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -109,6 +109,8 @@ var NPC = "assets/images/blank.jpg";
 
 var PC_Chosen = false;
 
+var FightStart = false;
+
 var ChseBtn = "";
 
 //Functions
@@ -118,73 +120,86 @@ function updatePC(ImgPath){
 }
 
 function updateNPC(ImgPath){
-  $("#NPC").attr("src", NPC).addClass('Img-Mirror');
-  $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
+  if(NPC != PC){
+    $("#NPC").attr("src", NPC).addClass('Img-Mirror');
+    $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
+  }
 }
 
 function PC_Choice(){
   PC_Chosen = true;
   alert('PC Chosen');
+  $(ChseBtn).html("");
 }
 
 function NPC_Choice(){
   alert('NPC Chosen');
+  $(ChseBtn).html("");
+  FightStart = true;
 }
 
 // Start Code Execution
 $(document).ready(function() {
 
-  $( "#Shovel_Knight" ).click(function() {
-    $(ChseBtn).html("");
-    ChseBtn = "#Char1";
-      if(!PC_Chosen){
-        PC = ShovelKnight.SRC;
-        updatePC(PC);
-      }
-      else{
-        NPC = ShovelKnight.SRC;
-        updateNPC(NPC); 
-      }
+    $( "#Shovel_Knight" ).click(function() {
+      if(!FightStart){
+        $(ChseBtn).html("");
+        ChseBtn = "#Char1";
+          if(!PC_Chosen){
+            PC = ShovelKnight.SRC;
+            updatePC(PC);
+          }
+          else{
+            NPC = ShovelKnight.SRC;
+            updateNPC(NPC); 
+          }
+        }
+      });
+
+    $( "#Black_Mage" ).click(function() {
+        if(!FightStart){
+          $(ChseBtn).html("");
+          ChseBtn = "#Char2";
+          if(!PC_Chosen){
+            PC = BlackMage.SRC;
+            updatePC(PC);
+          }
+          else{
+            NPC = BlackMage.SRC;
+            updateNPC(NPC); 
+          }
+        }
     });
 
-  $( "#Black_Mage" ).click(function() {
-    $(ChseBtn).html("");
-    ChseBtn = "#Char2";
-      if(!PC_Chosen){
-        PC = BlackMage.SRC;
-        updatePC(PC);
-      }
-      else{
-        NPC = BlackMage.SRC;
-        updateNPC(NPC); 
-      }
-  });
+    $( "#Hollow_Knight" ).click(function() {
+        if(!FightStart){
+          $(ChseBtn).html("");
+          ChseBtn = "#Char3";
+          if(!PC_Chosen){
+            PC = HollowKnight.SRC;
+            updatePC(PC);
+          }
+          else{
+            NPC = HollowKnight.SRC;
+            updateNPC(NPC); 
+          }
+        }
+    });
 
-  $( "#Hollow_Knight" ).click(function() {
-    $(ChseBtn).html("");
-    ChseBtn = "#Char3";
-      if(!PC_Chosen){
-        PC = HollowKnight.SRC;
-        updatePC(PC);
+    $( "#Megaman" ).click(function() {
+      if(!FightStart){
+        $(ChseBtn).html("");
+        ChseBtn = "#Char4";
+        if(!PC_Chosen){
+          PC = Megaman.SRC;
+          updatePC(PC);
+        }
+        else{
+          NPC = Megaman.SRC;
+          updateNPC(NPC); 
+        }
       }
-      else{
-        NPC = HollowKnight.SRC;
-        updateNPC(NPC); 
-      }
-  });
-
-  $( "#Megaman" ).click(function() {
-    $(ChseBtn).html("");
-    ChseBtn = "#Char4";
-      if(!PC_Chosen){
-        PC = Megaman.SRC;
-        updatePC(PC);
-      }
-      else{
-        NPC = Megaman.SRC;
-        updateNPC(NPC); 
-      }
-  });
+    });
 
 });
 
