@@ -28,7 +28,8 @@ body{
 
 #BattleGround{
   background-image: url('../images/Ring.png');
-  height:500px;
+  background-repeat: no-repeat;
+  height:600px;
 
   background-size: 100% 500px;
 }
@@ -36,7 +37,7 @@ body{
 #Img-Shift{
   position: relative;
 
-  top: 200px;
+  top: 100px;
 
 }
 
@@ -44,4 +45,9 @@ body{
   -moz-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
+}
+
+.HP-Bar{
+  background-color:green; 
+  height:25px;
 }

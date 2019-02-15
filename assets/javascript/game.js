@@ -1,12 +1,12 @@
 //Object Definitions
 var ShovelKnight = {
-    
+         Id : '#Char1',
          SRC: "assets/images/Shovel_Knight.png",
-		
+     Base_HP: 100, // Stores base Hit Points
           HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
-        Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
+        Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
      AtkInc : 6,	//Stores Attack value increase after each hit when played by user
 
      CtrAtk : 12, 	//Stores Counter Attack value
@@ -26,13 +26,13 @@ var ShovelKnight = {
 };
 
 var BlackMage = { 
-    
+         Id: '#Char2',
         SRC: "assets/images/Black_Mage.png",
-    
-        HP: 100,  // Stores Hit Points or “health”
+    Base_HP: 100, // Stores base Hit Points
+         HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
-      Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
+      Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
     AtkInc : 6,	//Stores Attack value increase after each hit when played by user
 
     CtrAtk : 12, 	//Stores Counter Attack value
@@ -52,13 +52,13 @@ var BlackMage = {
 };
 
 var HollowKnight = { 
-    
+        Id: '#Char3',
        SRC: "assets/images/Hollow_Knight.png",
-    
+   Base_HP: 100, // Stores base Hit Points
         HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
-      Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
+      Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
     AtkInc : 6,	//Stores Attack value increase after each hit when played by user
 
     CtrAtk : 12, 	//Stores Counter Attack value
@@ -78,13 +78,13 @@ var HollowKnight = {
 };
 
 var Megaman = {
-    
+        Id: '#Char4',
        SRC: "assets/images/Megaman.png",
-		
+   Base_HP: 100, // Stores base Hit Points
         HP: 100,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
-      Atk : this.BaseAtk, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
+      Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
     AtkInc : 6,	//Stores Attack value increase after each hit when played by user
 
     CtrAtk : 12, 	//Stores Counter Attack value
@@ -107,9 +107,9 @@ var Megaman = {
 var PC = "assets/images/blank.jpg";
 var NPC = "assets/images/blank.jpg";
 
-var PC_Chosen = false;
+var PC_Chosen = false; //indicates when player chooses character
 
-var FightStart = false;
+var FightStart = false; //indicates when opponent is chosen, reset when opponent defeated
 
 var ChseBtn = "";
 
@@ -128,17 +128,56 @@ function updateNPC(ImgPath){
 
 function PC_Choice(){
   PC_Chosen = true;
-  alert('PC Chosen');
   $(ChseBtn).html("");
 }
 
 function NPC_Choice(){
-  alert('NPC Chosen');
   $(ChseBtn).html("");
   FightStart = true;
+  Stat_Update(PC,NPC);
+  
 }
 
+function Stat_Update(PC_HP,NPC_HP){
+  var PC_Width;
+  var NPC_Width;
+  var PC_Str;
+  var NPC_Str;
 
+  $("#PC_HP").html('<div></div>').addClass('HP-Bar');
+  $("#NPC_HP").html('<div></div>').addClass('HP-Bar');
+
+  PC_Width = ((PC_HP.HP)/(PC_HP.Base_HP)*100);
+  NPC_Width = ((NPC_HP.HP)/(NPC_HP.Base_HP)*100);
+
+  PC_Str = PC_Width.toString()+'%';
+  NPC_Str = NPC_Width.toString()+'%';
+
+  $("#PC_HP").css("width",PC_Str);
+  $("#NPC_HP").css("width",NPC_Str);
+
+  $("#CharStats_PC")
+    .html('HP = '+PC.HP)
+    .append('<p>Atk = '+PC.Atk+'</p>');
+
+  $("#CharStats_NPC")
+    .html('HP = '+NPC.HP)
+    .append('<p>Atk = '+NPC.CtrAtk+'</p>');
+  
+}
+
+function Attack(){
+  NPC.HP = NPC.HP-PC.Atk;
+  PC.Atk = PC.Atk+PC.BaseAtk;
+  if(NPC.HP <= 0){
+    FightStart = false;
+    NPC.HP = 0;
+    $(NPC.Id).css("");
+  }
+  else{
+  PC.HP = PC.HP-NPC.CtrAtk;
+  }
+}
 
 // Start Code Execution
 $(document).ready(function() {
@@ -205,8 +244,13 @@ $(document).ready(function() {
 
     $( "#PC" ).click(function() {
       if(FightStart){
-        console.log(PC.HP);
-        $("#PC_HP").html('<h3 style="background-color:green;">'+PC.HP+'</h3>');
+        Attack();
+/*         NPC.HP = NPC.HP-PC.Atk;
+        PC.HP = PC.HP-NPC.CtrAtk;
+        PC.Atk = PC.Atk+PC.BaseAtk; */
+        Stat_Update(PC,NPC);
+        console.log('PC HP = '+PC.HP);
+        console.log('NPC HP = '+NPC.HP);
       }
     });
 
