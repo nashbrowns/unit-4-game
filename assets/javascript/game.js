@@ -115,13 +115,13 @@ var ChseBtn = "";
 
 //Functions
 function updatePC(ImgPath){
-  $("#PC").attr("src", PC);
+  $("#PC").attr("src", PC.SRC);
   $(ChseBtn).html('<p><input type="button" value="Choose Character" onclick="PC_Choice()" />');
 }
 
 function updateNPC(ImgPath){
   if(NPC != PC){
-    $("#NPC").attr("src", NPC).addClass('Img-Mirror');
+    $("#NPC").attr("src", NPC.SRC).addClass('Img-Mirror');
     $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
   }
 }
@@ -138,6 +138,8 @@ function NPC_Choice(){
   FightStart = true;
 }
 
+
+
 // Start Code Execution
 $(document).ready(function() {
 
@@ -146,26 +148,26 @@ $(document).ready(function() {
         $(ChseBtn).html("");
         ChseBtn = "#Char1";
           if(!PC_Chosen){
-            PC = ShovelKnight.SRC;
+            PC = ShovelKnight;
             updatePC(PC);
           }
           else{
-            NPC = ShovelKnight.SRC;
+            NPC = ShovelKnight;
             updateNPC(NPC); 
           }
         }
-      });
+    });
 
     $( "#Black_Mage" ).click(function() {
         if(!FightStart){
           $(ChseBtn).html("");
           ChseBtn = "#Char2";
           if(!PC_Chosen){
-            PC = BlackMage.SRC;
+            PC = BlackMage;
             updatePC(PC);
           }
           else{
-            NPC = BlackMage.SRC;
+            NPC = BlackMage;
             updateNPC(NPC); 
           }
         }
@@ -176,11 +178,11 @@ $(document).ready(function() {
           $(ChseBtn).html("");
           ChseBtn = "#Char3";
           if(!PC_Chosen){
-            PC = HollowKnight.SRC;
+            PC = HollowKnight;
             updatePC(PC);
           }
           else{
-            NPC = HollowKnight.SRC;
+            NPC = HollowKnight;
             updateNPC(NPC); 
           }
         }
@@ -191,13 +193,20 @@ $(document).ready(function() {
         $(ChseBtn).html("");
         ChseBtn = "#Char4";
         if(!PC_Chosen){
-          PC = Megaman.SRC;
+          PC = Megaman;
           updatePC(PC);
         }
         else{
-          NPC = Megaman.SRC;
+          NPC = Megaman;
           updateNPC(NPC); 
         }
+      }
+    });
+
+    $( "#PC" ).click(function() {
+      if(FightStart){
+        console.log(PC.HP);
+        $("#PC_HP").html('<h3 style="background-color:green;">'+PC.HP+'</h3>');
       }
     });
 
