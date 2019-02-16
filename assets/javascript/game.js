@@ -1,6 +1,6 @@
 //Object Definitions
 var ShovelKnight = {
-         Id : '#Char1',
+         Id : '#Shovel',
          SRC: "assets/images/Shovel_Knight.png",
      Base_HP: 100, // Stores base Hit Points
           HP: 100,  // Stores Hit Points or “health”
@@ -26,10 +26,10 @@ var ShovelKnight = {
 };
 
 var BlackMage = { 
-         Id: '#Char2',
+         Id: '#Mage',
         SRC: "assets/images/Black_Mage.png",
-    Base_HP: 100, // Stores base Hit Points
-         HP: 100,  // Stores Hit Points or “health”
+    Base_HP: 200, // Stores base Hit Points
+         HP: 200,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -52,10 +52,10 @@ var BlackMage = {
 };
 
 var HollowKnight = { 
-        Id: '#Char3',
+        Id: '#Hollow',
        SRC: "assets/images/Hollow_Knight.png",
-   Base_HP: 100, // Stores base Hit Points
-        HP: 100,  // Stores Hit Points or “health”
+   Base_HP: 300, // Stores base Hit Points
+        HP: 300,  // Stores Hit Points, always Base_HP intially
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -78,10 +78,10 @@ var HollowKnight = {
 };
 
 var Megaman = {
-        Id: '#Char4',
+        Id: '#Mega',
        SRC: "assets/images/Megaman.png",
-   Base_HP: 100, // Stores base Hit Points
-        HP: 100,  // Stores Hit Points or “health”
+   Base_HP: 400, // Stores base Hit Points
+        HP: 400,  // Stores Hit Points or “health”
 
     BaseAtk : 6,	// Stores base Attack value
       Atk : 6, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
@@ -103,9 +103,23 @@ var Megaman = {
 
 };
 
+var Blank_Char = {
+ SRC: "assets/images/blank.jpg",
+Base_HP: 0, // Stores base Hit Points
+  HP: 0,  // Stores Hit Points or “health”
+
+BaseAtk : 0,	// Stores base Attack value
+Atk : 0, 	//Stores Attack power incremented by AtkInc, initialized as BaseAtk
+AtkInc : 0,	//Stores Attack value increase after each hit when played by user
+
+CtrAtk : 0, 	//Stores Counter Attack value
+
+};
+
 //Global Variable Definitions
-var PC = "assets/images/blank.jpg";
-var NPC = "assets/images/blank.jpg";
+
+var PC = Blank_Char;
+var NPC = Blank_Char;
 
 var PC_Chosen = false; //indicates when player chooses character
 
@@ -113,27 +127,33 @@ var FightStart = false; //indicates when opponent is chosen, reset when opponent
 
 var ChseBtn = "";
 
+var Defeated = [];
+
 //Functions
 function updatePC(ImgPath){
   $("#PC").attr("src", PC.SRC);
   $(ChseBtn).html('<p><input type="button" value="Choose Character" onclick="PC_Choice()" />');
+  Stat_Update(PC,NPC);
 }
 
 function updateNPC(ImgPath){
   if(NPC != PC){
     $("#NPC").attr("src", NPC.SRC).addClass('Img-Mirror');
     $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
+    Stat_Update(PC,NPC);
   }
 }
 
 function PC_Choice(){
   PC_Chosen = true;
   $(ChseBtn).html("");
+  $(PC.Id).css('background-color','green');
 }
 
 function NPC_Choice(){
   $(ChseBtn).html("");
   FightStart = true;
+  $(NPC.Id).css('background-color','yellow');
   Stat_Update(PC,NPC);
   
 }
@@ -172,7 +192,12 @@ function Attack(){
   if(NPC.HP <= 0){
     FightStart = false;
     NPC.HP = 0;
-    $(NPC.Id).css("");
+    $(NPC.Id).css('background-color','red');
+    Defeated.push(NPC.Id);
+    NPC = Blank_Char;
+    updateNPC(NPC);
+    $(ChseBtn).html("");
+
   }
   else{
   PC.HP = PC.HP-NPC.CtrAtk;
@@ -183,7 +208,7 @@ function Attack(){
 $(document).ready(function() {
 
     $( "#Shovel_Knight" ).click(function() {
-      if(!FightStart){
+      if( (!FightStart) && (!Defeated.includes('#Shovel') ) ){
         $(ChseBtn).html("");
         ChseBtn = "#Char1";
           if(!PC_Chosen){
@@ -198,7 +223,7 @@ $(document).ready(function() {
     });
 
     $( "#Black_Mage" ).click(function() {
-        if(!FightStart){
+        if( (!FightStart) && (!Defeated.includes('#Mage') ) ){
           $(ChseBtn).html("");
           ChseBtn = "#Char2";
           if(!PC_Chosen){
@@ -213,7 +238,7 @@ $(document).ready(function() {
     });
 
     $( "#Hollow_Knight" ).click(function() {
-        if(!FightStart){
+        if( (!FightStart) && (!Defeated.includes('#Hollow') ) ){
           $(ChseBtn).html("");
           ChseBtn = "#Char3";
           if(!PC_Chosen){
@@ -228,7 +253,7 @@ $(document).ready(function() {
     });
 
     $( "#Megaman" ).click(function() {
-      if(!FightStart){
+      if( (!FightStart) && (!Defeated.includes('#Mega') ) ){
         $(ChseBtn).html("");
         ChseBtn = "#Char4";
         if(!PC_Chosen){
@@ -245,9 +270,6 @@ $(document).ready(function() {
     $( "#PC" ).click(function() {
       if(FightStart){
         Attack();
-/*         NPC.HP = NPC.HP-PC.Atk;
-        PC.HP = PC.HP-NPC.CtrAtk;
-        PC.Atk = PC.Atk+PC.BaseAtk; */
         Stat_Update(PC,NPC);
         console.log('PC HP = '+PC.HP);
         console.log('NPC HP = '+NPC.HP);
