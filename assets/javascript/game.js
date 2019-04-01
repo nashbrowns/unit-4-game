@@ -116,14 +116,14 @@ var Defeated = [];
 //Functions
 function updatePC(ImgPath){
   $("#PC").attr("src", PC.SRC);
-  $(ChseBtn).html('<p><input type="button" value="Choose Character" onclick="PC_Choice()" />');
+  $(ChseBtn).html('<p><input class="btn btn-info btn-sm" type="button" value="Choose" onclick="PC_Choice()" />');
   Stat_Update(PC,NPC);
 }
 
 function updateNPC(ImgPath){
   if(NPC != PC){
     $("#NPC").attr("src", NPC.SRC).addClass('Img-Mirror');
-    $(ChseBtn).html('<p><input type="button" value="Choose Opponent" onclick="NPC_Choice()" />');
+    $(ChseBtn).html('<p><input class="btn btn-info" type="button" value="Choose" onclick="NPC_Choice()" />');
     Stat_Update(PC,NPC);
   }
 }

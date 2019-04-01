@@ -3,7 +3,9 @@ body{
     animation: 3000ms ease-in-out infinite color-change;
 }
 
-
+/* .row{
+  margin: 20px;
+} */
 #head{
     text-align:center;
     animation: 3000ms ease-in-out infinite color-change;
@@ -51,3 +53,30 @@ body{
   background-color:green; 
   height:25px;
 }
+
+.card{
+  width: 15rem;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .card{
+      width: 8rem;
+      /* height: 128px; */
+    }
+    
+    .card-title{
+      font-size: 12px;
+    }
+
+    .btn {
+      font-size: 12px;
+    }
+
+    .fighterImg{
+      height: 128px;
+      object-fit: fill;
+  }
+
+
+  }
